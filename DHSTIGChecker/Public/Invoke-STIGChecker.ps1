@@ -127,10 +127,10 @@ function Invoke-STIGChecker {
         }
 
         $ResultsStatus = @{
-            'Not Applicable' = ($VulnResults | Where-Object {$_.Result -eq 'Not Applicable'}).VulnID
-            Open             = ($VulnResults | Where-Object {$_.Result -eq 'Open'}).VulnID
-            'Not a Finding'  = ($VulnResults | Where-Object {$_.Result -eq 'Not a Finding'}).VulnID
-            'Not Reviewed'   = ($VulnResults | Where-Object {$_.Result -eq 'Not Reviewed'}).VulnID
+            'Not Applicable' = ($VulnResults | Where-Object { $_.Result -eq 'Not Applicable' }).VulnID
+            Open             = ($VulnResults | Where-Object { $_.Result -eq 'Open' }).VulnID
+            'Not a Finding'  = ($VulnResults | Where-Object { $_.Result -eq 'Not a Finding' }).VulnID
+            'Not Reviewed'   = ($VulnResults | Where-Object { $_.Result -eq 'Not Reviewed' }).VulnID
         }
 
         $STIGCheckerResults = @{
