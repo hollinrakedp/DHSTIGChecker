@@ -18,7 +18,7 @@ function Invoke-STIGChecker {
     
     begin {
         try {
-            $EnvConfig = Get-STIGCheckerConfig -ConfigPath "$ConfigPath"
+            $EnvConfig = Get-STIGCheckerConfig -Path "$ConfigPath"
         }
         catch {
             Write-Warning "Failed to get the Environment configuration file."
@@ -71,7 +71,7 @@ function Invoke-STIGChecker {
                 Write-Warning "Unable to gather Domain SIDs. Results may not be accurate."
             }
         }
-        $STIGs = Get-ChildItem "$STIGRootPath/$Name"
+        $STIGs = Get-ChildItem "$STIGRootPath\$Name\*" -File -Include "*.ps1"
 
         $VulnResults = @()
 
