@@ -12,11 +12,11 @@ Currently this module is limited to evaluating the Windows 10 STIG. Additional S
 ## Windows 10
 This STIG contains 257 individual checks.
 - Total Checks: 257
-    - Complete  : 201
-    - Partial   : 7
-    - Manual    : 1
-    - Incomplete: 48
-        - V-220701, V-220712, V-220713, V-220714, V-220715, V-220716, V-220717, V-220723, V-220724, V-220725, V-220730, V-220731, V-220733, V-220737, V-220782, V-220783, V-220784, V-220834, V-220861, V-220872, V-220907, V-220908, V-220909, V-220911, V-220912, V-220921, V-220922, V-220928, V-220933, V-220946, V-220954, V-220955, V-220956, V-220957, V-220958, V-220959, V-220960, V-220961, V-220962, V-220963, V-220964, V-220965, V-220966, V-220968, V-220969, V-220970, V-220971, V-220972
+    - Complete  : 229
+        - Partial   : 7
+        - Manual    : 1
+    - Incomplete: 28
+        - V-220701, V-220712, V-220713, V-220714, V-220715, V-220717, V-220724, V-220725, V-220733, V-220737, V-220782, V-220783, V-220784, V-220834, V-220861, V-220872, V-220907, V-220921, V-220922, V-220933, V-220946, V-220954, V-220955, V-220968, V-220969, V-220970, V-220971, V-220972
 
 ### Partial Checks
 A check is considered partial if the logic in the check does not properly validate all possible states or has the possibility of returning an incorrect result. For the purpose of documentation, this category will not include those checks which may differ for LTSC/B version of Windows (See 'Known Issues' for additional details).
