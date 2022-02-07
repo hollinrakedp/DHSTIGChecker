@@ -1,6 +1,6 @@
 Change Log
 ======
-# v0.1.1 (yyyy-MM-dd)
+# v0.1.1 (2022-02-06)
 Fixes
 * Invoke-STIGChecker - Fixed incorrect parameter being used to import STIG Checker configuation file
 
