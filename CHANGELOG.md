@@ -1,5 +1,19 @@
 Change Log
 ======
+# v0.2 (2022-04-08)
+The largest change for this version was adding the framwork for the Server 2016 and Server 2019 STIGs. Also added was another function for viewing information about STIG IDs.
+
+Fixes
+* Corrected the parameter name in the Argument Completer
+
+Changes
+* Added scripts with the framework for the remaining Windows 10 STIGs
+* Added scripts with the framework for the Server 2016 STIG
+* Added scripts with the framework for the Server 2019 STIG
+* Added version information for the included STIGs.
+
+Errata
+* Formatting cleanup
 # v0.1.1 (2022-02-06)
 Fixes
 * Invoke-STIGChecker - Fixed incorrect parameter being used to import STIG Checker configuation file
