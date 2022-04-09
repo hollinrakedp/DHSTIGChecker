@@ -20,7 +20,7 @@ If any groups or accounts (to include administrators), are granted the "Act as p
 
 #>
 
-$GrantedPrivilege = ($Script:CurrentSecPolicy.SeCreatePermanentPrivilege -split ',').trimstart('*')
+$GrantedPrivilege = ($Script:CurrentSecPolicy.SeTcbPrivilege -split ',').trimstart('*')
 
 if ($null -eq $GrantedPrivilege) {
     $true
