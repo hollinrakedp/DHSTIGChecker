@@ -20,7 +20,7 @@ If any groups or accounts are granted the "Access Credential Manager as a truste
 
 #>
 
-$GrantedPrivilege = ($Script:CurrentSecPolicy.SeCreatePermanentPrivilege -split ',').trimstart('*')
+$GrantedPrivilege = ($Script:CurrentSecPolicy.SeTrustedCredManAccessPrivilege -split ',').trimstart('*')
 
 if ($null -eq $GrantedPrivilege) {
     $true
