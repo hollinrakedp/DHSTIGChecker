@@ -20,4 +20,11 @@ Type: REG_DWORD
 Value: 0x000000ff (255)
 
 #>
-return 'Not Reviewed'
+
+$Params = @{
+    Path = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\policies\Explorer\"
+    Name = "NoDriveTypeAutoRun"
+    ExpectedValue = 255
+}
+
+Compare-RegKeyValue @Params

@@ -28,4 +28,11 @@ Enter "get-service | where {$_.DisplayName -Like "*mcafee*"} | Select Status,Dis
 Enter "get-service | where {$_.DisplayName -Like "*symantec*"} | Select Status,DisplayName”
 
 #>
-return 'Not Reviewed'
+
+$AV = Get-Service -Name "WinDefend", "*mcafee*", "*symantec*" | Where-Object {$_.Status -eq 'Running'}
+if ($AV.count -ge 1) {
+    $true
+}
+else {
+    $false
+}

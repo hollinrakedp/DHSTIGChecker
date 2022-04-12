@@ -20,4 +20,11 @@ Type: REG_DWORD
 Value: 0x00000003 (3)
 
 #>
-return 'Not Reviewed'
+
+$Params = @{
+    Path          = "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\"
+    Name          = "MinEncryptionLevel"
+    ExpectedValue = 3
+}
+
+Compare-RegKeyValue @Params

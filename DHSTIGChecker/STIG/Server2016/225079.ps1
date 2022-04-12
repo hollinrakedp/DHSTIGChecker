@@ -42,4 +42,25 @@ The application account must meet requirements for application account passwords
 Passwords for application accounts with this user right must be protected as highly privileged accounts.
 
 #>
-return 'Not Reviewed'
+
+$GrantedPrivilege = ($Script:CurrentSecPolicy.SeDebugPrivilege -split ',').trimstart('*')
+
+$Allowed = @($Script:SIDLocalGroup.Administrators)
+
+$Local:Results = @()
+
+foreach ($ID in $GrantedPrivilege) {
+    $Local:Results += if ($Allowed -contains $ID ) {
+        $true
+    }
+    else {
+        $false
+    }
+}
+
+if ($Local:Results -contains $false) {
+    $false
+}
+else {
+    $true
+}

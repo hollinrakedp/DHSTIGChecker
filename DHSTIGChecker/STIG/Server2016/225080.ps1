@@ -32,4 +32,25 @@ If any SIDs other than the following are granted the "SeRemoteShutdownPrivilege"
 S-1-5-32-544 (Administrators)
 
 #>
-return 'Not Reviewed'
+
+$GrantedPrivilege = ($Script:CurrentSecPolicy.SeRemoteShutdownPrivilege -split ',').trimstart('*')
+
+$Allowed = @($Script:SIDLocalGroup.Administrators)
+
+$Local:Results = @()
+
+foreach ($ID in $GrantedPrivilege) {
+    $Local:Results += if ($Allowed -contains $ID ) {
+        $true
+    }
+    else {
+        $false
+    }
+}
+
+if ($Local:Results -contains $false) {
+    $false
+}
+else {
+    $true
+}

@@ -30,4 +30,23 @@ Possible values for this setting are:
 7 - All (which includes "bad" and would be a finding)
 
 #>
-return 'Not Reviewed'
+
+$Local:Results = @()
+$Local:ValidValues = 1, 3, 8
+
+foreach ($Value in $Local:ValidValues) {
+    $Params = @{
+        Path          = "HKLM:\SYSTEM\CurrentControlSet\Policies\EarlyLaunch\"
+        Name          = "DriverLoadPolicy"
+        ExpectedValue = $Value
+    }
+    
+    $Local:Results += Compare-RegKeyValue @Params
+}
+
+if ($Local:Results -contains $true) {
+    $true
+}
+else {
+    $false
+}

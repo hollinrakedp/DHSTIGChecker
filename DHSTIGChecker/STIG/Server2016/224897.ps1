@@ -26,4 +26,15 @@ If the system does not audit the following, this is a finding.
 Object Access >> Other Object Access Events - Failure
 
 #>
-return 'Not Reviewed'
+
+$Local:Category = "Other Object Access Events"
+$Local:Setting = "Failure"
+
+$Local:AuditSetting = $Script:AuditPolicy | Where-Object {$_.Subcategory -contains "$Local:Category"}
+
+if ($Local:AuditSetting.'Inclusion Setting' -match $Local:Setting) {
+    $true
+}
+else {
+    $false
+}

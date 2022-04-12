@@ -20,4 +20,9 @@ For each local volume, if the file system does not indicate "NTFS", this is a fi
 This does not apply to system partitions such the Recovery and EFI System Partition.
 
 #>
-return 'Not Reviewed'
+
+$FixedDrives = Get-Volume | Where-Object {($_.DriveType -eq 'Fixed') -and ($null -ne $_.DriveLetter)}
+
+$Local:Results = @()
+$Local:Results += $FixedDrives | Where-Object {$_.FileSystemType -eq 'NTFS'}
+$Local:Results.Count -eq $FixedDrives.Count

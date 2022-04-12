@@ -22,4 +22,30 @@ Value Type: REG_DWORD
 Value: 0x0000001e (30) (or less, but not 0)
 
 #>
-return 'Not Reviewed'
+
+$Local:Results = @()
+
+$Params = @{
+    Path          = "HKLM:\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters\"
+    Name          = "MaximumPasswordAge"
+    ExpectedValue = 30
+    Comparison    = 'le'
+}
+
+$Local:Results += Compare-RegKeyValue @Params
+
+$Params = @{
+    Path          = "HKLM:\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters\"
+    Name          = "MaximumPasswordAge"
+    ExpectedValue = 0
+    Comparison    = "ne"
+}
+
+$Local:Results += Compare-RegKeyValue @Params
+
+if ($Local:Results -contains $false) {
+    $false
+}
+else {
+    $true
+}

@@ -34,4 +34,25 @@ S-1-5-32-544 (Administrators)
 Systems that have the Hyper-V role will also have "Virtual Machines" given this user right (this may be displayed as "NT Virtual Machine\Virtual Machines", SID S-1-5-83-0). This is not a finding.
 
 #>
-return 'Not Reviewed'
+
+$GrantedPrivilege = ($Script:CurrentSecPolicy.SeCreateTokenPrivilege -split ',').trimstart('*')
+
+$Allowed = @($Script:SIDLocalGroup.Administrators)
+
+$Local:Results = @()
+
+foreach ($ID in $GrantedPrivilege) {
+    $Local:Results += if ($Allowed -contains $ID ) {
+        $true
+    }
+    else {
+        $false
+    }
+}
+
+if ($Local:Results -contains $false) {
+    $false
+}
+else {
+    $true
+}

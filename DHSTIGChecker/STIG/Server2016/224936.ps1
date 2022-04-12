@@ -20,4 +20,23 @@ Type: REG_DWORD
 Value: 0x00000000 (0) (Security), 0x00000001 (1) (Basic)
 
 #>
-return 'Not Reviewed'
+
+$Results = @()
+$ValidValues = 0, 1
+
+foreach ($Value in $ValidValues) {
+    $Params = @{
+        Path          = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection\"
+        Name          = "AllowTelemetry"
+        ExpectedValue = $Value
+    }
+
+    $Results += Compare-RegKeyValue @Params
+}
+
+if ($Results -contains $true) {
+    $true
+}
+else {
+    $false
+}

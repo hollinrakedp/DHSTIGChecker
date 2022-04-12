@@ -28,4 +28,12 @@ Review the text file.
 If any SIDs are granted the "SeCreatePermanentPrivilege" user right, this is a finding.
 
 #>
-return 'Not Reviewed'
+
+$GrantedPrivilege = ($Script:CurrentSecPolicy.SeCreatePermanentPrivilege -split ',').trimstart('*')
+
+if ($null -eq $GrantedPrivilege) {
+    $true
+}
+else {
+    $false
+}

@@ -32,4 +32,15 @@ Enter 'Net User [account name] | Find /i "Password Last Set"', where [account na
 If the "PasswordLastSet" date is greater than "60" days old, this is a finding.
 
 #>
-return 'Not Reviewed'
+
+# Checking all accounts not just members of Administrators
+
+$AcctStalePW = Get-LocalUser | Where-Object { ($_.Enabled -eq $true) -and ($_.PasswordLastSet -le $(Get-Date).AddDays(-60))}
+
+if ($AcctStalePW) {
+    Write-Verbose "This check failed: Reason - Found Account(s) with stale password: $($AcctStalePW.Name -join ', ')"
+    $false
+}
+else {
+    $true
+}

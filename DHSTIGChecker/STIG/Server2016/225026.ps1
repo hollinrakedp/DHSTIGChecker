@@ -24,4 +24,13 @@ Secedit /Export /Areas SecurityPolicy /CFG C:\Path\FileName.Txt
 If "NewAdministratorName" is not something other than "Administrator" in the file, this is a finding.
 
 #>
-return 'Not Reviewed'
+
+$Account = "Administrator"
+$BuiltInAccount = Get-BuiltInAccount -Account $Account
+
+if ($BuiltInAccount.Name -eq "$Account") {
+    $false
+}
+else {
+    $true
+}

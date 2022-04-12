@@ -24,4 +24,12 @@ Secedit /Export /Areas SecurityPolicy /CFG C:\Path\FileName.Txt
 If "LockoutBadCount" equals "0" or is greater than "3" in the file, this is a finding.
 
 #>
-return 'Not Reviewed'
+
+$Local:Result = Get-CurrentSecurityPolicySetting -Policy "LockoutBadCount"
+
+if (($Result -ge 1) -and ($Result -le 3)) {
+    $true
+}
+else {
+    $false
+}

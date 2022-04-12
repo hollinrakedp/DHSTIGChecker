@@ -24,4 +24,13 @@ Secedit /Export /Areas SecurityPolicy /CFG C:\Path\FileName.Txt
 If "EnableGuestAccount" equals "1" in the file, this is a finding.
 
 #>
-return 'Not Reviewed'
+
+$Account = "Guest"
+$BuiltInAccount = Get-BuiltInAccount -Account $Account
+
+if ($BuiltInAccount.Enabled) {
+    $false
+}
+else {
+    $true
+}

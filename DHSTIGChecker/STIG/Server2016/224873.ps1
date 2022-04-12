@@ -28,4 +28,12 @@ If "PasswordComplexity" equals "0" in the file, this is a finding.
 Note: If an external password filter is in use that enforces all four character types and requires this setting to be set to "Disabled", this would not be considered a finding. If this setting does not affect the use of an external password filter, it must be enabled for fallback purposes.
 
 #>
-return 'Not Reviewed'
+
+$Local:Result = Get-CurrentSecurityPolicySetting -Policy "PasswordComplexity"
+
+if ($Local:Result -eq 1) {
+    $true
+}
+else {
+    $false
+}

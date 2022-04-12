@@ -26,4 +26,15 @@ If the system does not audit the following, this is a finding.
 Detailed Tracking >> Plug and Play Events - Success
 
 #>
-return 'Not Reviewed'
+
+$Local:Category = "Plug and Play Events"
+$Local:Setting = "Success"
+
+$Local:AuditSetting = $Script:AuditPolicy | Where-Object {$_.Subcategory -contains "$Local:Category"}
+
+if ($Local:AuditSetting.'Inclusion Setting' -match $Local:Setting) {
+    $true
+}
+else {
+    $false
+}

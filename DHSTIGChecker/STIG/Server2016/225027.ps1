@@ -24,4 +24,13 @@ Secedit /Export /Areas SecurityPolicy /CFG C:\Path\FileName.Txt
 If "NewGuestName" is not something other than "Guest" in the file, this is a finding.
 
 #>
-return 'Not Reviewed'
+
+$Account = "Guest"
+$BuiltInAccount = Get-BuiltInAccount -Account $Account
+
+if ($BuiltInAccount.Name -eq "$Account") {
+    $false
+}
+else {
+    $true
+}

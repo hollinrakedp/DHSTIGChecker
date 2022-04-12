@@ -24,4 +24,12 @@ Secedit /Export /Areas SecurityPolicy /CFG C:\Path\FileName.Txt
 If "LSAAnonymousNameLookup" equals "1" in the file, this is a finding.
 
 #>
-return 'Not Reviewed'
+
+$Local:Result = Get-CurrentSecurityPolicySetting -Policy "LSAAnonymousNameLookup"
+
+if ($Local:Result -eq 0) {
+    $true
+}
+else {
+    $false
+}

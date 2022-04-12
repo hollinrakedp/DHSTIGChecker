@@ -24,4 +24,12 @@ Secedit /Export /Areas SecurityPolicy /CFG C:\Path\FileName.Txt
 If "ClearTextPassword" equals "1" in the file, this is a finding.
 
 #>
-return 'Not Reviewed'
+
+$Local:Result = Get-CurrentSecurityPolicySetting -Policy "ClearTextPassword"
+
+if ($Local:Result -eq 0) {
+    $true
+}
+else {
+    $false
+}

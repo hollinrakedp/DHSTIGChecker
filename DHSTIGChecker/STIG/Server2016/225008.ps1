@@ -26,4 +26,16 @@ Value: 0x00000000 (0)
 This setting may cause issues with some network scanning tools if local administrative accounts are used remotely. Scans should use domain accounts where possible. If a local administrative account must be used, temporarily enabling the privileged token by configuring the registry value to "1" may be required.
 
 #>
-return 'Not Reviewed'
+
+if (!($Script:IsDomainJoined)) {
+    Write-Verbose "This check does not apply: Reason - Not Domain-Joined"
+    return "Not Applicable"
+}
+
+$Params = @{
+    Path = "HKLM:SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\"
+    Name = "LocalAccountTokenFilterPolicy"
+    ExpectedValue = 0
+}
+
+Compare-RegKeyValue @Params

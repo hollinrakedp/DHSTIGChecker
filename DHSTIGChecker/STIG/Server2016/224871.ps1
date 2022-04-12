@@ -24,4 +24,12 @@ Secedit /Export /Areas SecurityPolicy /CFG C:\Path\FileName.Txt
 If "MinimumPasswordAge" equals "0" in the file, this is a finding.
 
 #>
-return 'Not Reviewed'
+
+$Local:Result = Get-CurrentSecurityPolicySetting -Policy "MinimumPasswordAge"
+
+if ($Local:Result -gt 0) {
+    $true
+}
+else {
+    $false
+}

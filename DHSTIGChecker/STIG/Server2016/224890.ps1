@@ -26,4 +26,15 @@ Compare the AuditPol settings with the following. If the system does not audit t
 Logon/Logoff >> Account Lockout - Failure
 
 #>
-return 'Not Reviewed'
+
+$Local:Category = "Account Lockout"
+$Local:Setting = "Failure"
+
+$Local:AuditSetting = $Script:AuditPolicy | Where-Object {$_.Subcategory -contains "$Local:Category"}
+
+if ($Local:AuditSetting.'Inclusion Setting' -match $Local:Setting) {
+    $true
+}
+else {
+    $false
+}

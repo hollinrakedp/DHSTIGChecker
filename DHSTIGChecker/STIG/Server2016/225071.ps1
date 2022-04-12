@@ -38,4 +38,12 @@ The application account must meet requirements for application account passwords
 Passwords for accounts with this user right must be protected as highly privileged accounts.
 
 #>
-return 'Not Reviewed'
+
+$GrantedPrivilege = ($Script:CurrentSecPolicy.SeTcbPrivilege -split ',').trimstart('*')
+
+if ($null -eq $GrantedPrivilege) {
+    $true
+}
+else {
+    $false
+}

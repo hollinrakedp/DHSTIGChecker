@@ -36,4 +36,10 @@ The requirement must be documented with the ISSO.
 The application account must meet requirements for application account passwords, such as length (WN16-00-000060) and required frequency of changes (WN16-00-000070).
 
 #>
-return 'Not Reviewed'
+
+if ($null -eq $Script:CurrentSecPolicy.SeLockMemoryPrivilege) {
+    $true
+}
+else {
+    $false
+}

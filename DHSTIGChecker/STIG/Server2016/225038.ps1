@@ -22,4 +22,23 @@ Value: 1 (Lock Workstation) or 2 (Force Logoff)
 If configuring this on servers causes issues, such as terminating users' remote sessions, and the organization has a policy in place that any other sessions on the servers, such as administrative console logons, are manually locked or logged off when unattended or not in use, this would be acceptable. This must be documented with the ISSO.
 
 #>
-return 'Not Reviewed'
+
+$Local:Results = @()
+$Local:ValidValues = 1, 2
+
+foreach ($Value in $Local:ValidValues) {
+    $Params = @{
+        Path          = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\"
+        Name          = "SCRemoveOption"
+        ExpectedValue = $Value
+    }
+
+    $Local:Results += Compare-RegKeyValue @Params
+}
+
+if ($Local:Results -contains $true) {
+    $true
+}
+else {
+    $false
+}

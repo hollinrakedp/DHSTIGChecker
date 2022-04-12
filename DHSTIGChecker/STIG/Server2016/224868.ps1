@@ -26,4 +26,12 @@ Secedit /Export /Areas SecurityPolicy /CFG C:\Path\FileName.Txt
 If "ResetLockoutCount" is less than "15" in the file, this is a finding.
 
 #>
-return 'Not Reviewed'
+
+$Local:Result = Get-CurrentSecurityPolicySetting -Policy "ResetLockoutCount"
+
+if ($Local:Result -ge 15) {
+    $true
+}
+else {
+    $false
+}

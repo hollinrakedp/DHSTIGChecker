@@ -20,4 +20,11 @@ Type: REG_DWORD
 Value: 0x00000000 (0)
 
 #>
-return 'Not Reviewed'
+
+$Params = @{
+    Path = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\CredUI\"
+    Name = "EnumerateAdministrators"
+    ExpectedValue = 0
+}
+
+Compare-RegKeyValue @Params

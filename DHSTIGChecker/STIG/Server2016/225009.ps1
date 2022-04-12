@@ -22,4 +22,16 @@ Type: REG_DWORD
 Value: 0x00000000 (0)
 
 #>
-return 'Not Reviewed'
+
+if (!($IsDomainJoined)) {
+    Write-Verbose "This check does not apply: Reason - Not Domain-Joined"
+    return "Not Applicable"
+}
+
+$Params = @{
+    Path = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System\"
+    Name = "EnumerateLocalUsers"
+    ExpectedValue = 0
+}
+
+Compare-RegKeyValue @Params

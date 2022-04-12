@@ -30,4 +30,12 @@ Exclude application accounts and disabled accounts (e.g., DefaultAccount, Guest)
 If any enabled user accounts are returned with a "PasswordExpires" status of "False", this is a finding.
 
 #>
-return 'Not Reviewed'
+
+$Accounts = Get-CimInstance -Query 'SELECT name FROM Win32_UserAccount WHERE LocalAccount=TRUE AND Disabled=FALSE AND PasswordExpires=FALSE' -Verbose:$false
+
+if ($null -eq $Accounts) {
+    $true
+}
+else {
+    $false
+}

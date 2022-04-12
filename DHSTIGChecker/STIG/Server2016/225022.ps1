@@ -71,4 +71,24 @@ Valid to: Friday, August 26, 2022
 
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsClassified) {
+    Write-Verbose "This check does not apply: Reason - Not an Unclassified System"
+    return "Not Applicable"
+}
+else {
+    $Certs = Get-ChildItem -Path "Cert:\LocalMachine\Disallowed\"
+    $Thumbprints = @(
+        "A8C27332CCB4CA49554CE55D34062A7DD2850C02",
+        "AC06108CA348CC03B53795C64BF84403C1DBD341"
+    )
+
+    $Local:Results = Compare-Object -DifferenceObject $Certs.Thumbprint -ReferenceObject $Thumbprints -IncludeEqual -ExcludeDifferent
+
+    if ($Local:Results.count -eq $Thumbprints.Count) {
+        $true
+    }
+    else {
+        $false
+    }
+}
