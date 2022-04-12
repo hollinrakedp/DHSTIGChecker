@@ -28,4 +28,15 @@ If the system does not audit the following, this is a finding.
 Privilege Use >> Sensitive Privilege Use - Success
 
 #>
-return 'Not Reviewed'
+
+$Local:Category = "Sensitive Privilege Use"
+$Local:Setting = "Success"
+
+$Local:AuditSetting = $Script:AuditPolicy | Where-Object {$_.Subcategory -contains "$Local:Category"}
+
+if ($Local:AuditSetting.'Inclusion Setting' -match $Local:Setting) {
+    $true
+}
+else {
+    $false
+}

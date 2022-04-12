@@ -28,4 +28,12 @@ Review the text file.
 If any SIDs are granted the "SeTrustedCredManAccessPrivilege" user right, this is a finding.
 
 #>
-return 'Not Reviewed'
+
+$GrantedPrivilege = ($Script:CurrentSecPolicy.SeTrustedCredManAccessPrivilege -split ',').trimstart('*')
+
+if ($null -eq $GrantedPrivilege) {
+    $true
+}
+else {
+    $false
+}

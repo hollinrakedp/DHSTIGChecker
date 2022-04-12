@@ -26,4 +26,15 @@ If the system does not audit the following, this is a finding.
 Account Logon >> Credential Validation - Failure
 
 #>
-return 'Not Reviewed'
+
+$Local:Category = "Credential Validation"
+$Local:Setting = "Failure"
+
+$Local:AuditSetting = $Script:AuditPolicy | Where-Object {$_.Subcategory -contains "$Local:Category"}
+
+if ($Local:AuditSetting.'Inclusion Setting' -match $Local:Setting) {
+    $true
+}
+else {
+    $false
+}

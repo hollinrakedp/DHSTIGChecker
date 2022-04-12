@@ -28,4 +28,15 @@ Object Access >> Removable Storage - Failure
 Virtual machines or systems that use network attached storage may generate excessive audit events for secondary virtual drives or the network attached storage when this setting is enabled. This may be set to Not Configured in such cases and would not be a finding.
 
 #>
-return 'Not Reviewed'
+
+$Local:Category = "Removable Storage"
+$Local:Setting = "Failure"
+
+$Local:AuditSetting = $Script:AuditPolicy | Where-Object {$_.Subcategory -contains "$Local:Category"}
+
+if ($Local:AuditSetting.'Inclusion Setting' -match $Local:Setting) {
+    $true
+}
+else {
+    $false
+}

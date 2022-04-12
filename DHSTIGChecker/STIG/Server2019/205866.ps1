@@ -20,4 +20,11 @@ Type: REG_DWORD
 Value: 0x00000000 (0)
 
 #>
-return 'Not Reviewed'
+
+$Params = @{
+    Path = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Group Policy\{35378EAC-683F-11D2-A89A-00C04FBBCFA2}"
+    Name = "NoGPOListChanges"
+    ExpectedValue = 0
+}
+
+Compare-RegKeyValue @Params

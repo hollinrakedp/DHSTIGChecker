@@ -40,4 +40,10 @@ Implementation guidance for AppLocker is available in the NSA paper "Application
 https://www.iad.gov/iad/library/ia-guidance/tech-briefs/application-whitelisting-using-microsoft-applocker.cfm
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsClassified) {
+    'Not Applicable'
+}
+else {
+    "Not Reviewed"
+}

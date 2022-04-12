@@ -47,4 +47,11 @@ If any enabled accounts have not been logged on to within the past 35 days, this
 Inactive accounts that have been reviewed and deemed to be required must be documented with the ISSO.
 
 #>
-return 'Not Reviewed'
+
+$InactiveUsers = Get-LocalUser | Where-Object {($_.Enabled -eq $true) -and ($_.LastLogon -lt $(Get-Date).AddDays(-35)) -and ($_.Name -notlike "$($Script:EnvConfig.LocalAdminAccountName)")}
+if ([string]::IsNullOrEmpty($InactiveUsers)) {
+   $true
+}
+else {
+   $false
+}

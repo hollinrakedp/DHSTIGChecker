@@ -22,4 +22,11 @@ Value Type: REG_DWORD
 Value: 0x7ffffff8 (2147483640)
 
 #>
-return 'Not Reviewed'
+
+$Params = @{
+    Path          = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters\"
+    Name          = "SupportedEncryptionTypes"
+    ExpectedValue = 2147483640
+}
+
+Compare-RegKeyValue @Params

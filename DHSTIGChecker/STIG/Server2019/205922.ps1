@@ -20,4 +20,11 @@ Value Type: REG_DWORD
 Value: 0x20080000 (537395200)
 
 #>
-return 'Not Reviewed'
+
+$Params = @{
+    Path          = "HKLM:\SYSTEM\CurrentControlSet\Control\Lsa\MSV1_0\"
+    Name          = "NTLMMinServerSec"
+    ExpectedValue = 537395200
+}
+
+Compare-RegKeyValue @Params

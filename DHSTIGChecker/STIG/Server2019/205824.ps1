@@ -24,4 +24,11 @@ Value: 0x00000001 (1)
 This setting may prevent a system from being joined to a domain if not configured consistently between systems.
 
 #>
-return 'Not Reviewed'
+
+$Params = @{
+    Path          = "HKLM:\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters\"
+    Name          = "RequireStrongKey"
+    ExpectedValue = 1
+}
+
+Compare-RegKeyValue @Params

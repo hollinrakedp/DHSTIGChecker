@@ -24,4 +24,12 @@ Secedit /Export /Areas SecurityPolicy /CFG C:\Path\FileName.Txt
 If "PasswordHistorySize" is less than "24" in the file, this is a finding.
 
 #>
-return 'Not Reviewed'
+
+$Local:Result = Get-CurrentSecurityPolicySetting -Policy "PasswordHistorySize"
+
+if ($Local:Result -ge 24) {
+    $true
+}
+else {
+    $false
+}

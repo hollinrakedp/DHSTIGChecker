@@ -23,4 +23,11 @@ Value: 0x00000002 (2) (Prompt for consent on the secure desktop)
 0x00000001 (1) (Prompt for credentials on the secure desktop)
 
 #>
-return 'Not Reviewed'
+
+$Params = @{
+    Path          = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\"
+    Name          = "ConsentPromptBehaviorAdmin"
+    ExpectedValue = 2
+}
+
+Compare-RegKeyValue @Params

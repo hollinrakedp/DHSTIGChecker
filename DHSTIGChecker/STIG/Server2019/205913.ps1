@@ -18,4 +18,12 @@ Navigate to Local Computer Policy >> Computer Configuration >> Windows Settings 
 If the value for "Network access: Allow anonymous SID/Name translation" is not set to "Disabled", this is a finding.
 
 #>
-return 'Not Reviewed'
+
+$Local:Result = Get-CurrentSecurityPolicySetting -Policy "LSAAnonymousNameLookup"
+
+if ($Local:Result -eq 0) {
+    $true
+}
+else {
+    $false
+}

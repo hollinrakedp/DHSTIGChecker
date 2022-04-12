@@ -22,4 +22,12 @@ Value Type:  REG_SZ
 Value:  4 (or less)
 
 #>
-return 'Not Reviewed'
+
+$Params = @{
+    Path          = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\"
+    Name          = "CachedLogonsCount"
+    ExpectedValue = 10
+    Comparison    = "le"
+}
+
+Compare-RegKeyValue @Params

@@ -26,4 +26,12 @@ If "LockoutDuration" is less than "15" (excluding "0") in the file, this is a fi
 Configuring this to "0", requiring an administrator to unlock the account, is more restrictive and is not a finding.
 
 #>
-return 'Not Reviewed'
+
+$Local:Result = Get-CurrentSecurityPolicySetting -Policy "LockoutDuration"
+
+if (($Local:Result -eq 0) -or ($Local:Result -ge 15)) {
+    $true
+}
+else {
+    $false
+}

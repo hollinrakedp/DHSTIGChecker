@@ -26,4 +26,12 @@ Secedit /Export /Areas SecurityPolicy /CFG C:\Path\FileName.Txt
 If "MaximumPasswordAge" is greater than "60" or equal to "0" in the file, this is a finding.
 
 #>
-return 'Not Reviewed'
+
+$Local:Result = Get-CurrentSecurityPolicySetting -Policy "MaximumPasswordAge"
+
+if (($Local:Result -gt 0) -and ($Local:Result -le 60)) {
+    $true
+}
+else {
+    $false
+}

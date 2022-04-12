@@ -80,4 +80,20 @@ Thumbprint: 4ECB5CC3095670454DA1CBD410FC921F46B8564B
 Valid to: Friday, June 14, 2041
 
 #>
-return 'Not Reviewed'
+
+$Certs = Get-ChildItem -Path "Cert:LocalMachine\Root"
+$Thumbprints = @(
+    "8C941B34EA1EA6ED9AE2BC54CF687252B4C9B561",
+    "D73CA91102A2204A36459ED32213B467D7CE97FB",
+    "B8269F25DBD937ECAFD4C35A9838571723F2D026",
+    "4ECB5CC3095670454DA1CBD410FC921F46B8564B"
+)
+
+$Local:Results = Compare-Object -DifferenceObject $Certs.Thumbprint -ReferenceObject $Thumbprints -IncludeEqual -ExcludeDifferent
+
+if ($Local:Results.count -eq $Thumbprints.Count) {
+    $true
+}
+else {
+    $false
+}

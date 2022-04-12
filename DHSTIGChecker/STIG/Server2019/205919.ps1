@@ -20,4 +20,11 @@ Value Type: REG_DWORD
 Value: 0x00000005 (5)
 
 #>
-return 'Not Reviewed'
+
+$Params = @{
+    Path          = "HKLM:\SYSTEM\CurrentControlSet\Control\Lsa\"
+    Name          = "LmCompatibilityLevel"
+    ExpectedValue = 5
+}
+
+Compare-RegKeyValue @Params

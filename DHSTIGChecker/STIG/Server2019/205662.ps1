@@ -24,4 +24,12 @@ Secedit /Export /Areas SecurityPolicy /CFG C:\Path\FileName.Txt
 If "MinimumPasswordLength" is less than "14" in the file, this is a finding.
 
 #>
-return 'Not Reviewed'
+
+$Local:Result = Get-CurrentSecurityPolicySetting -Policy "MinimumPasswordLength"
+
+if ($Local:Result -ge 14) {
+    $true
+}
+else {
+    $false
+}

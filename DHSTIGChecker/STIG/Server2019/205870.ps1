@@ -26,4 +26,35 @@ Value: 0x00000000 (0) - No peering (HTTP Only)
 A value of 0x00000003 (3), Internet, is a finding.
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsDomainJoined) {
+    $Params = @{
+        Path          = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization\"
+        Name          = "DODownloadMode"
+        ExpectedValue = 3
+        Comparison    = 'ne'
+    }
+
+    Compare-RegKeyValue @Params
+}
+else {
+    $Local:Results = @()
+    $Local:ValidValues = 0, 1
+
+    foreach ($Value in $Local:ValidValues) {
+        $Params = @{
+            Path          = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config\"
+            Name          = "DODownloadMode"
+            ExpectedValue = $Value
+        }
+    
+        $Local:Results += Compare-RegKeyValue @Params
+    }
+
+    if ($Local:Results -contains $true) {
+        $true
+    }
+    else {
+        $false
+    }
+}

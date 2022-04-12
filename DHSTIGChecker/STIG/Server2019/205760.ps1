@@ -46,4 +46,29 @@ The requirement must be documented with the ISSO.
 The application account must meet requirements for application account passwords, such as length (WN19-00-000050) and required frequency of changes (WN19-00-000060).
 
 #>
-return 'Not Reviewed'
+
+$GrantedPrivilege = ($Script:CurrentSecPolicy.SeImpersonatePrivilege -split ',').trimstart('*')
+
+$Allowed = @($Script:SIDLocalGroup.Administrators,
+    $Script:SIDLocalGroup.LocalService,
+    $Script:SIDLocalGroup.NetworkService,
+    $Script:SIDLocalGroup.Service
+)
+
+$Local:Results = @()
+
+foreach ($ID in $GrantedPrivilege) {
+    $Local:Results += if ($Allowed -contains $ID ) {
+        $true
+    }
+    else {
+        $false
+    }
+}
+
+if ($Local:Results -contains $false) {
+    $false
+}
+else {
+    $true
+}

@@ -17,16 +17,23 @@ Verify if Windows Defender is in use or enabled:
 
 Open "PowerShell".
 
-Enter “get-service | where {$_.DisplayName -Like "*Defender*"} | Select Status,DisplayName”
+Enter ï¿½get-service | where {$_.DisplayName -Like "*Defender*"} | Select Status,DisplayNameï¿½
 
 Verify if third-party anti-virus is in use or enabled:
 
 Open "PowerShell".
 
-Enter "get-service | where {$_.DisplayName -Like "*mcafee*"} | Select Status,DisplayName”
+Enter "get-service | where {$_.DisplayName -Like "*mcafee*"} | Select Status,DisplayNameï¿½
 
-Enter "get-service | where {$_.DisplayName -Like "*symantec*"} | Select Status,DisplayName”
+Enter "get-service | where {$_.DisplayName -Like "*symantec*"} | Select Status,DisplayNameï¿½
 
 
 #>
-return 'Not Reviewed'
+
+$AV = Get-Service -Name "WinDefend", "*mcafee*", "*symantec*" | Where-Object {$_.Status -eq 'Running'}
+if ($AV.count -ge 1) {
+    $true
+}
+else {
+    $false
+}

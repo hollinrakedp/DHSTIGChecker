@@ -22,4 +22,30 @@ Value Type: REG_DWORD
 Value: 0x00000384 (900) (or less, excluding "0" which is effectively disabled)
 
 #>
-return 'Not Reviewed'
+
+$Local:Results = @()
+
+$Params = @{
+    Path          = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\"
+    Name          = "InactivityTimeoutSecs"
+    ExpectedValue = 900
+    Comparison    = "le"
+}
+
+$Local:Results += Compare-RegKeyValue @Params
+
+$Params = @{
+    Path          = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\"
+    Name          = "InactivityTimeoutSecs"
+    ExpectedValue = 0
+    Comparison    = "ne"
+}
+
+$Local:Results += Compare-RegKeyValue @Params
+
+if ($Local:Results -contains $false) {
+    $false
+}
+else {
+    $true
+}

@@ -20,4 +20,11 @@ Value Type: REG_DWORD
 Value: 0x00000001 (1)
 
 #>
-return 'Not Reviewed'
+
+$Params = @{
+    Path          = "HKLM:\SYSTEM\CurrentControlSet\Control\Lsa\"
+    Name          = "RestrictAnonymousSAM"
+    ExpectedValue = 1
+}
+
+Compare-RegKeyValue @Params

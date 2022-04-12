@@ -22,4 +22,12 @@ Type: REG_DWORD
 Value: 0x00008000 (32768) (or greater)
 
 #>
-return 'Not Reviewed'
+
+$Params = @{
+    Path = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\EventLog\System\"
+    Name = "MaxSize"
+    ExpectedValue = 32768
+    Comparison = "ge"
+}
+
+Compare-RegKeyValue @Params

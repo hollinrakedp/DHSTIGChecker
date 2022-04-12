@@ -22,4 +22,11 @@ Value: 0x00000001 (1)
 Clients with this setting enabled will not be able to communicate via digitally encrypted or signed protocols with servers that do not support these algorithms. Both the browser and web server must be configured to use TLS; otherwise. the browser will not be able to connect to a secure site.
 
 #>
-return 'Not Reviewed'
+
+$Params = @{
+    Path          = "HKLM:\SYSTEM\CurrentControlSet\Control\Lsa\FIPSAlgorithmPolicy\"
+    Name          = "Enabled"
+    ExpectedValue = 1
+}
+
+Compare-RegKeyValue @Params

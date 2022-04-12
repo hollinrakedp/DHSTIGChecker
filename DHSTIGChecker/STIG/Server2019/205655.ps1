@@ -20,4 +20,11 @@ Value Type:  REG_DWORD
 Value:  0x00000000 (0)
 
 #>
-return 'Not Reviewed'
+
+$Params = @{
+    Path          = "HKLM:\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters\"
+    Name          = "EnablePlainTextPassword"
+    ExpectedValue = 0
+}
+
+Compare-RegKeyValue @Params

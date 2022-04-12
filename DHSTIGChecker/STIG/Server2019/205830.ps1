@@ -26,4 +26,15 @@ Value Type: REG_DWORD
 Value: 0x00000000 (0) (or if the Value Name does not exist)
 
 #>
-return 'Not Reviewed'
+
+$Params = @{
+    Path = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer\"
+    Name = "NoDataExecutionPrevention"
+    ExpectedValue = 0
+}
+
+if (!(Test-RegKeyValueExists -Path $Params.Path -Name $Params.Name)) {
+    return $true
+}
+
+Compare-RegKeyValue @Params
