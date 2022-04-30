@@ -14,5 +14,6 @@ $STIGRootPath = "$PSScriptRoot\STIG"
 
 $TabCompleteAvailableSTIGs = {(Get-ChildItem -Path $STIGRootPath -Directory).Name}
 Register-ArgumentCompleter -CommandName Invoke-STIGChecker -ParameterName Name -ScriptBlock $TabCompleteAvailableSTIGs
+Register-ArgumentCompleter -CommandName Get-STIGVulnInfo -ParameterName Name -ScriptBlock $TabCompleteAvailableSTIGs
 
 Export-ModuleMember -Function $Public.Basename
