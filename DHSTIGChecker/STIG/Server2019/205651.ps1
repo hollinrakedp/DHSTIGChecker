@@ -26,4 +26,11 @@ Type:  REG_DWORD
 Value:  0x00000002 (2)
 
 #>
-return 'Not Reviewed'
+
+$Params = @{
+    Path          = "HKLM:\SOFTWARE\Policies\Microsoft\Cryptography\"
+    Name          = "ForceKeyProtection"
+    ExpectedValue = 2
+}
+
+Compare-RegKeyValue @Params

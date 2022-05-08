@@ -32,10 +32,10 @@ This STIG contains 273 individual checks.
 ## Server 2019
 This STIG contains 275 individual checks.
 - Total Checks: 275
-    - Complete  : 0
+    - Complete  : 25
         - Partial   : 0
     - Manual    : 0
-    - Incomplete: 275
+    - Incomplete: 250
 ## Windows 10
 This STIG contains 257 individual checks.
 - Total Checks: 257

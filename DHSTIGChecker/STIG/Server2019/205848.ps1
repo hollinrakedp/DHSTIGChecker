@@ -26,4 +26,31 @@ TPM Manufacturer Information - Specific Version = 2.0 or 1.2
 If a TPM is not found or is not ready for use, this is a finding.
 
 #>
-return 'Not Reviewed'
+
+if (!($Script:IsDomainJoined)) {
+    Write-Verbose "This check does not apply: Reason - Not Domain-Joined"
+    return "Not Applicable"
+}
+
+$TPM = Get-Tpm
+
+if ($TPM.Present) {
+    if ($TPM.Ready) {
+        if ($TPM.Enabled) {
+            Write-Verbose "Pass: Reason - TPM is Enabled"
+            $true
+        }
+        else {
+            Write-Verbose "Fail: Reason - TPM Not Enabled"
+            $false
+        }
+    }
+    else {
+        Write-Verbose "Fail: Reason - TPM Not Ready"
+        $false
+    }
+}
+else {
+    Write-Verbose "Fail: Reason - TPM Not Present"
+    $false
+}

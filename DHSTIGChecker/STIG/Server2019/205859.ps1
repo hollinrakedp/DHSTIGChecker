@@ -20,4 +20,11 @@ Value Type: REG_DWORD
 Value: 0x00000002 (2)
 
 #>
-return 'Not Reviewed'
+
+$Params = @{
+    Path          = "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\"
+    Name          = "DisableIPSourceRouting"
+    ExpectedValue = 2
+}
+
+Compare-RegKeyValue @Params

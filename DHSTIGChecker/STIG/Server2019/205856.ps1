@@ -18,4 +18,10 @@ Run "System Information".
 Under "System Summary", if "BIOS Mode" does not display "UEFI", this is a finding.
 
 #>
-return 'Not Reviewed'
+
+if ($Script:ComputerInfo.BiosFirmwareType -like "Uefi") {
+    $true
+}
+else {
+    $false
+}

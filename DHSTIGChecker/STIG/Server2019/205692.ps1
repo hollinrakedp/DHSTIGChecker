@@ -22,4 +22,16 @@ Value Type: REG_DWORD
 Value: 0x00000001 (1)
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsClassified) {
+    Write-Verbose "This check does not apply: Reason - Not an Unclassified System"
+    return "Not Applicable"
+}
+
+$Params = @{
+    Path          = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System\"
+    Name          = "EnableSmartScreen"
+    ExpectedValue = 1
+}
+
+Compare-RegKeyValue @Params

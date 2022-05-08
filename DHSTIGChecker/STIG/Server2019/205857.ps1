@@ -22,4 +22,12 @@ Confirm-SecureBootUEFI
 If a value of "True" is not returned, this is a finding.
 
 #>
-return 'Not Reviewed'
+
+$SecureBoot = Confirm-SecureBootUEFI
+switch ($SecureBoot) {
+    "Cmdlet not supported on this platform." {
+        Write-Verbose "System does not support SecureBoot."
+        $SecureBoot = $false 
+    }
+}
+$SecureBoot

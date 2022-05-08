@@ -22,4 +22,11 @@ Value Type: REG_DWORD
 Value: 0x00000001 (1)
 
 #>
-return 'Not Reviewed'
+
+$Params = @{
+    Path          = "HKLM:\SYSTEM\CurrentControlSet\Services\LanManServer\Parameters\"
+    Name          = "EnableSecuritySignature"
+    ExpectedValue = 1
+}
+
+Compare-RegKeyValue @Params

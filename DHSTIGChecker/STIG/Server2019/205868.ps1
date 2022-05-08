@@ -20,4 +20,11 @@ Type: REG_DWORD
 Value: 0x00000001 (1)
 
 #>
-return 'Not Reviewed'
+
+$Params = @{
+    Path          = "HKLM:\SOFTWARE\Policies\Microsoft\Power\PowerSettings\0e796bdb-100d-47d6-a2d5-f7d2daa51f51\"
+    Name          = "ACSettingIndex"
+    ExpectedValue = 1
+}
+
+Compare-RegKeyValue @Params
