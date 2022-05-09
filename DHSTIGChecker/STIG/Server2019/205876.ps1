@@ -22,4 +22,16 @@ Value Type: REG_DWORD
 Value: 0x00000000 (0)
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsDomainController) {
+    $Params = @{
+        Path          = "HKLM:\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters\"
+        Name          = "RefusePasswordChange"
+        ExpectedValue = 0
+    }
+
+    Compare-RegKeyValue @Params
+}
+else {
+    "Not Applicable"
+}

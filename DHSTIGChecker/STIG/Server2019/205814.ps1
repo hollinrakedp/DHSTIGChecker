@@ -23,10 +23,15 @@ Value:  0x00000001 (1)
 
 #>
 
-$Params = @{
-    Path = "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Rpc\"
-    Name = "RestrictRemoteClients"
-    ExpectedValue = 1
+if ($Script:IsDomainController) {
+    "Not Applicable"
 }
-
-Compare-RegKeyValue @Params
+else {
+    $Params = @{
+        Path          = "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Rpc\"
+        Name          = "RestrictRemoteClients"
+        ExpectedValue = 1
+    }
+    
+    Compare-RegKeyValue @Params
+}

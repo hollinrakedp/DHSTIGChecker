@@ -28,4 +28,15 @@ If the system does not audit the following, this is a finding.
 Logon/Logoff >> Logon - Failure
 
 #>
-return 'Not Reviewed'
+
+$Local:Category = "Logon"
+$Local:Setting = "Failure"
+
+$Local:AuditSetting = $Script:AuditPolicy | Where-Object {$_.Subcategory -contains "$Local:Category"}
+
+if ($Local:AuditSetting.'Inclusion Setting' -match $Local:Setting) {
+    $true
+}
+else {
+    $false
+}

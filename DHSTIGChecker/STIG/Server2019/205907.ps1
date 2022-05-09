@@ -41,4 +41,14 @@ A Microsoft article on Credential Guard system requirement can be found at the f
 https://docs.microsoft.com/en-us/windows/security/identity-protection/credential-guard/credential-guard-requirements
 
 #>
-return 'Not Reviewed'
+if (!($Script:IsDomainJoined)) {
+    Write-Verbose "This check does not apply: Reason - Standalone system"
+    "Not Applicable"
+}
+elseif ($Script:IsDomainController) {
+    Write-Verbose "This check does not apply: Reason - Domain Controller"
+    "Not Applicable"
+}
+else {
+    "Not Reviewed"
+}

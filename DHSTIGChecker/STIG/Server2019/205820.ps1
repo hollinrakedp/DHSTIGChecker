@@ -24,4 +24,17 @@ Value Type: REG_DWORD
 Value: 0x00000002 (2)
 
 #>
-return 'Not Reviewed'
+
+
+if ($Script:IsDomainController) {
+    $Params = @{
+        Path          = "HKLM:\SYSTEM\CurrentControlSet\Services\NTDS\Parameters\"
+        Name          = "LDAPServerIntegrity"
+        ExpectedValue = 2
+    }
+    
+    Compare-RegKeyValue @Params
+}
+else {
+    "Not Applicable"
+}
