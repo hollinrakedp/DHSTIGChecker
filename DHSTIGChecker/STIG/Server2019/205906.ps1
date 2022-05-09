@@ -34,7 +34,7 @@ else {
     $Params = @{
         Path          = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\"
         Name          = "CachedLogonsCount"
-        ExpectedValue = 10
+        ExpectedValue = 4
         Comparison    = "le"
     }
 
