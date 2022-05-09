@@ -22,12 +22,21 @@ Value Type:  REG_SZ
 Value:  4 (or less)
 
 #>
-
-$Params = @{
-    Path          = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\"
-    Name          = "CachedLogonsCount"
-    ExpectedValue = 10
-    Comparison    = "le"
+if (!($Script:IsDomainJoined)) {
+    Write-Verbose "This check does not apply: Reason - Standalone system"
+    "Not Applicable"
 }
+elseif ($Script:IsDomainController) {
+    Write-Verbose "This check does not apply: Reason - Domain Controller"
+    "Not Applicable"
+}
+else {
+    $Params = @{
+        Path          = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\"
+        Name          = "CachedLogonsCount"
+        ExpectedValue = 10
+        Comparison    = "le"
+    }
 
-Compare-RegKeyValue @Params
+    Compare-RegKeyValue @Params
+}

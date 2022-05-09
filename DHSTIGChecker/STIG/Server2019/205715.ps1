@@ -28,14 +28,20 @@ This setting may cause issues with some network scanning tools if local administ
 #>
 
 if (!($Script:IsDomainJoined)) {
-    Write-Verbose "This check does not apply: Reason - Not Domain-Joined"
-    return "Not Applicable"
+    Write-Verbose "This check does not apply: Reason - Standalone system"
+    "Not Applicable"
 }
-
-$Params = @{
-    Path = "HKLM:SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\"
-    Name = "LocalAccountTokenFilterPolicy"
-    ExpectedValue = 0
+elseif ($Script:IsDomainController) {
+    Write-Verbose "This check does not apply: Reason - Domain Controller"
+    "Not Applicable"
 }
+else {
 
-Compare-RegKeyValue @Params
+    $Params = @{
+        Path          = "HKLM:SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\"
+        Name          = "LocalAccountTokenFilterPolicy"
+        ExpectedValue = 0
+    }
+
+    Compare-RegKeyValue @Params
+}

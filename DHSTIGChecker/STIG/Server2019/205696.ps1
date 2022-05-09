@@ -23,15 +23,20 @@ Value: 0x00000000 (0)
 
 #>
 
-if (!($IsDomainJoined)) {
-    Write-Verbose "This check does not apply: Reason - Not Domain-Joined"
-    return "Not Applicable"
+if (!($Script:IsDomainJoined)) {
+    Write-Verbose "This check does not apply: Reason - Standalone system"
+    "Not Applicable"
 }
-
-$Params = @{
-    Path = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System\"
-    Name = "EnumerateLocalUsers"
-    ExpectedValue = 0
+elseif ($Script:IsDomainController) {
+    Write-Verbose "This check does not apply: Reason - Domain Controller"
+    "Not Applicable"
 }
-
-Compare-RegKeyValue @Params
+else {
+    $Params = @{
+        Path = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System\"
+        Name = "EnumerateLocalUsers"
+        ExpectedValue = 0
+    }
+    
+    Compare-RegKeyValue @Params
+}
