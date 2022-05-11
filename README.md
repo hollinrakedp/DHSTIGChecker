@@ -16,7 +16,7 @@ If a check returns 'Not Applicable', the Vulnerability ID has been evaluated and
 This module has no external dependencies.
 
 # STIGs
-Currently this module is limited to evaluating the Windows 10 STIG. While Server 2016 and 2019 are shown below, work has not started on them at this time.
+This module is able to evaluate the following STIGs for compliance:
 - Windows 10 v2r3 (1 Nov 2021)
 - Server 2016 v2r3 (1 Nov 2021)
 - Server 2019 v2r3 (1 Nov 2021)
@@ -24,18 +24,19 @@ Currently this module is limited to evaluating the Windows 10 STIG. While Server
 ## Server 2016
 This STIG contains 273 individual checks.
 - Total Checks: 273
-    - Complete  : 0
+    - Complete  : 145
         - Partial   : 0
     - Manual    : 0
-    - Incomplete: 273
+    - Incomplete: 128
 
 ## Server 2019
 This STIG contains 275 individual checks.
 - Total Checks: 275
-    - Complete  : 25
+    - Complete  : 156
         - Partial   : 0
     - Manual    : 0
-    - Incomplete: 250
+    - Incomplete: 119
+        - V-205624, V-205628, V-205631, V-205632, V-205640, V-205641, V-205642, V-205645, V-205646, V-205647, V-205648, V-205650, V-205657, V-205658, V-205661, V-205663, V-205664, V-205665, V-205666, V-205667, V-205668, V-205669, V-205670, V-205671, V-205672, V-205673, V-205674, V-205675, V-205677, V-205678, V-205679, V-205680, V-205681, V-205682, V-205683, V-205684, V-205685, V-205695, V-205697, V-205698, V-205699, V-205700, V-205701, V-205702, V-205703, V-205704, V-205705, V-205706, V-205707, V-205710, V-205716, V-205717, V-205718, V-205719, V-205720, V-205721, V-205723, V-205726, V-205727, V-205728, V-205731, V-205732, V-205733, V-205734, V-205735, V-205736, V-205737, V-205738, V-205739, V-205740, V-205741, V-205742, V-205743, V-205744, V-205745, V-205746, V-205747, V-205748, V-205759, V-205761, V-205769, V-205785, V-205786, V-205787, V-205788, V-205789, V-205790, V-205791, V-205792, V-205793, V-205794, V-205799, V-205800, V-205803, V-205807, V-205811, V-205812, V-205813, V-205818, V-205829, V-205843, V-205844, V-205845, V-205846, V-205847, V-205849, V-205850, V-205851, V-205852, V-205853, V-205854, V-205855, V-205864, V-205875, V-205877, V-205907, V-205924, V-214936, V-236001
 ## Windows 10
 This STIG contains 257 individual checks.
 - Total Checks: 257
