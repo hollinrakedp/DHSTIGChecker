@@ -34,6 +34,7 @@ function Get-STIGComputerInfo {
             CsModel = $ComputerInfo.CsModel                                                                 #Latitude E5570
             WindowsProductName = $ComputerInfo.WindowsProductName                                           #Professional
             WindowsEditionId = $ComputerInfo.WindowsEditionId                                               #Windows 10 Pro
+            WindowsInstallationType = $ComputerInfo.WindowsInstallationType                                 #Client, Server, Server Core
             OsName = $ComputerInfo.OsName                                                                   #Microsoft Windows 10 Pro
             WindowsVersion = $ComputerInfo.WindowsVersion                                                   #1909 etc
             OsVersion = $ComputerInfo.OsVersion                                                             #10.0.19042
