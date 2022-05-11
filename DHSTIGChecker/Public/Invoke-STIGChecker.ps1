@@ -56,6 +56,9 @@ function Invoke-STIGChecker {
             LocalAccount       = "S-1-5-113"
         }
 
+        $Script:IsDomainController = $ComputerInfo.CsDomainRole -like "*Domain*Controller"
+        $Script:IsMemberServer = $ComputerInfo.CsDomainRole -like "*Member*Server"
+        $Script:IsServerCore = $ComputerInfo.WindowsInstallationType -like "Server*Core"
         $Script:IsDomainJoined = $ComputerInfo.CsPartOfDomain
 
         if ($Script:IsDomainJoined) {
