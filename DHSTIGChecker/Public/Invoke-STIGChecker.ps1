@@ -22,7 +22,7 @@ function Invoke-STIGChecker {
         }
         catch {
             Write-Warning "Failed to get the Environment configuration file."
-            return
+            break
         }
         
         try {
@@ -30,7 +30,7 @@ function Invoke-STIGChecker {
         }
         catch {
             Write-Warning "Failed to get the Computer information."
-            return
+            break
         }
 
         SecEdit.exe /Export  /cfg currentsecpolicy.txt | Out-Null
