@@ -26,4 +26,15 @@ Value Type: REG_DWORD
 Value: 0x00000002 (2) (or if the Value Name does not exist)
 
 #>
-return 'Not Reviewed'
+
+$Params = @{
+    Path          = "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Attachments\"
+    Name          = "SaveZoneInformation"
+    ExpectedValue = 2
+}
+
+if (!(Test-RegKeyValueExists -Path $Params.Path -Name $Params.Name)) {
+    return $true
+}
+
+Compare-RegKeyValue @Params

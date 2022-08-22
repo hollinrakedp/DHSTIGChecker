@@ -32,4 +32,23 @@ Value Type: REG_DWORD
 Value: 1
 
 #>
-return 'Not Reviewed'
+
+$Local:Results = @()
+$Local:Names = "NoPreviewPane", "NoReadingPane"
+
+foreach ($Name in $Local:Names) {
+    $Params = @{
+        Path          = "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer\"
+        Name          = "$Name"
+        ExpectedValue = 1
+    }
+        
+    $Local:Results += Compare-RegKeyValue @Params
+}
+
+if ($Local:Results -contains $false) {
+    $false
+}
+else {
+    $true
+}

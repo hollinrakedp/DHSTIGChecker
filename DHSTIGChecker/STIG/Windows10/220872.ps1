@@ -25,5 +25,10 @@ Value: 0x00000001 (1)
 
 #>
 
-#Incomplete
-return "Not Reviewed"
+$Params = @{
+    Path          = "HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent\"
+    Name          = "DisableThirdPartySuggestions"
+    ExpectedValue = 1
+}
+
+Compare-RegKeyValue @Params

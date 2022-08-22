@@ -21,5 +21,10 @@ Value: 1
 
 #>
 
-#Incomplete
-return "Not Reviewed"
+$Params = @{
+    Path          = "HKCU:\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\PushNotifications\"
+    Name          = "NoToastApplicationNotificationOnLockScreen"
+    ExpectedValue = 1
+}
+
+Compare-RegKeyValue @Params
