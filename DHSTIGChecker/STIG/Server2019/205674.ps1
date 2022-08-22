@@ -44,4 +44,10 @@ S-1-5-domain-512 (Domain Admins)
 If any SIDs are defined for the user right on non-domain-joined systems, this is a finding.
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsDomainController) {
+    "Not Applicable"
+}
+else {
+    "Not Reviewed"
+}

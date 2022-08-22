@@ -43,4 +43,10 @@ Network hardware ports at the site are subject to 802.1x authentication or MAC a
 Premise firewall or host restrictions prevent access to ports 389, 636, 3268, and 3269 from client hosts not explicitly identified by domain (.mil) or IP address.
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsDomainController) {
+    "Not Reviewed"
+}
+else {
+    "Not Applicable"
+}

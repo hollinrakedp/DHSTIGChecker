@@ -44,4 +44,10 @@ The requirement must be documented with the ISSO.
 The application account must meet requirements for application account passwords, such as length (WN19-00-000050) and required frequency of changes (WN19-00-000060).
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsDomainController) {
+    "Not Applicable"
+}
+else {
+    "Not Reviewed"
+}

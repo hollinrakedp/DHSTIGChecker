@@ -61,4 +61,10 @@ Inherited from - (CN of domain)
 Applies to - Descendant Organizational Unit objects
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsDomainController) {
+    "Not Reviewed"
+}
+else {
+    "Not Applicable"
+}

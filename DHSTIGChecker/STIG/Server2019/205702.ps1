@@ -28,4 +28,10 @@ Navigate to Computer Configuration >> Policies >> Windows Settings >> Security S
 If the "Enforce user logon restrictions" is not set to "Enabled", this is a finding.
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsDomainController) {
+    "Not Reviewed"
+}
+else {
+    "Not Applicable"
+}

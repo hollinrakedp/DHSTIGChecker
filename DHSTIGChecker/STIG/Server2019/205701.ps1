@@ -36,4 +36,10 @@ Select the "Account" tab.
 If any user accounts, including administrators, do not have "Smart card is required for interactive logon" checked in the "Account Options" area, this is a finding.
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsDomainController) {
+    "Not Reviewed"
+}
+else {
+    "Not Applicable"
+}

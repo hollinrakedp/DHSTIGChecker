@@ -67,4 +67,10 @@ Applies to - This object only
 (Access - Special = Permissions: Write all properties, Modify permissions, Modify owner)
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsDomainController) {
+    "Not Reviewed"
+}
+else {
+    "Not Applicable"
+}

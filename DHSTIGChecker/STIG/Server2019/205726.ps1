@@ -42,4 +42,10 @@ The quotes are required and dc=[forest-name] is the fully qualified LDAP name of
 If the results do not specify a "MaxConnIdleTime" or it has a value greater than "300" (5 minutes), this is a finding.
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsDomainController) {
+    "Not Reviewed"
+}
+else {
+    "Not Applicable"
+}

@@ -30,4 +30,10 @@ Ignore system shares (e.g., NETLOGON, SYSVOL, and administrative shares ending i
 If user shares are located on the same logical partition as the directory server data files, this is a finding.
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsDomainController) {
+    "Not Reviewed"
+}
+else {
+    "Not Applicable"
+}

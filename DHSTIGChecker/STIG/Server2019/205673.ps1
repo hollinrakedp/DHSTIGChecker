@@ -48,4 +48,10 @@ All Systems:
 S-1-5-32-546 (Guests)
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsDomainController) {
+    "Not Applicable"
+}
+else {
+    "Not Reviewed"
+}

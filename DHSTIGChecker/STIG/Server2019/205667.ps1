@@ -36,4 +36,10 @@ If the following SIDs are not defined for the "SeDenyNetworkLogonRight" user rig
 S-1-5-32-546 (Guests)
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsDomainController) {
+    "Not Reviewed"
+}
+else {
+    "Not Applicable"
+}

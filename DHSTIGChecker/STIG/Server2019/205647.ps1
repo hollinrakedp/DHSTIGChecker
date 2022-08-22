@@ -35,4 +35,10 @@ See PKE documentation for other network domain suffixes.
 If the mappings are to certificates issued by a CA authorized by the Component's CIO, this is a CAT II finding.
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsDomainController) {
+    "Not Reviewed"
+}
+else {
+    "Not Applicable"
+}

@@ -28,4 +28,10 @@ Navigate to Computer Configuration >> Policies >> Windows Settings >> Security S
 If the "Maximum tolerance for computer clock synchronization" is greater than "5" minutes, this is a finding.
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsDomainController) {
+    "Not Reviewed"
+}
+else {
+    "Not Applicable"
+}

@@ -34,4 +34,10 @@ If accounts that do not have responsibility for administration of the system are
 If the built-in Administrator account or other required administrative accounts are found on the system, this is not a finding.
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsDomainController) {
+    "Not Applicable"
+}
+else {
+    "Not Reviewed"
+}

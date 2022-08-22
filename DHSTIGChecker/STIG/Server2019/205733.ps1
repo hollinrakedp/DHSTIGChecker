@@ -54,4 +54,10 @@ S-1-5-32-546 (Guests)
 Note: "Local account" is referring to the Windows built-in security group.
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsDomainController) {
+    "Not Applicable"
+}
+else {
+    "Not Reviewed"
+}

@@ -44,4 +44,10 @@ DoD Public Key Enablement (PKE) Engineering Support maintains the InstallRoot ut
 http://iase.disa.mil/pki-pke/function_pages/tools.html
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsDomainController) {
+    "Not Reviewed"
+}
+else {
+    "Not Applicable"
+}

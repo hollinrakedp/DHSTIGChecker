@@ -22,4 +22,10 @@ Value Type: REG_SZ
 Value: O:BAG:BAD:(A;;RC;;;BA)
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsDomainController) {
+    "Not Applicable"
+}
+else {
+    "Not Reviewed"
+}

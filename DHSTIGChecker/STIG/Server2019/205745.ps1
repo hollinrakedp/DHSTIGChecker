@@ -34,4 +34,10 @@ If any SIDs other than the following are granted the "SeEnableDelegationPrivileg
 S-1-5-32-544 (Administrators)
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsDomainController) {
+    "Not Reviewed"
+}
+else {
+    "Not Applicable"
+}

@@ -32,4 +32,10 @@ Review the text file.
 If any SIDs are granted the "SeDenyServiceLogonRight" user right, this is a finding.
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsDomainController) {
+    "Not Reviewed"
+}
+else {
+    "Not Applicable"
+}

@@ -39,4 +39,10 @@ BUILTIN\Administrators:(I)(F)
 (F) - full access
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsDomainController) {
+    "Not Reviewed"
+}
+else {
+    "Not Applicable"
+}

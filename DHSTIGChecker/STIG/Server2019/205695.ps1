@@ -38,4 +38,10 @@ Review installed applications.
 If any applications are installed that are not required for the domain controller, this is a finding.
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsDomainController) {
+    "Not Reviewed"
+}
+else {
+    "Not Applicable"
+}

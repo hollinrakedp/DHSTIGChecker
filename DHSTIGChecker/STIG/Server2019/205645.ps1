@@ -32,4 +32,10 @@ Select the Certificates entry in the left pane.
 If no certificate for the domain controller exists in the right pane, this is a finding.
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsDomainController) {
+    "Not Reviewed"
+}
+else {
+    "Not Applicable"
+}

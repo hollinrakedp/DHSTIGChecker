@@ -28,4 +28,10 @@ Navigate to Computer Configuration >> Policies >> Windows Settings >> Security S
 If the value for "Maximum lifetime for user ticket" is "0" or greater than "10" hours, this is a finding.
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsDomainController) {
+    "Not Reviewed"
+}
+else {
+    "Not Applicable"
+}

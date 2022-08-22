@@ -30,4 +30,10 @@ If the system does not audit the following, this is a finding.
 Account Management >> Computer Account Management - Success
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsDomainController) {
+    "Not Reviewed"
+}
+else {
+    "Not Applicable"
+}

@@ -46,4 +46,10 @@ CREATOR OWNER:(OI)(CI)(IO)(F)
 Run "icacls /help" to view definitions of other permission codes.
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsDomainController) {
+    "Not Reviewed"
+}
+else {
+    "Not Applicable"
+}

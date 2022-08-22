@@ -66,4 +66,10 @@ If detailed permissions include any Create, Delete, Modify, or Write Permissions
 ENTERPRISE DOMAIN CONTROLLERS - Read, Special permissions
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsDomainController) {
+    "Not Reviewed"
+}
+else {
+    "Not Applicable"
+}

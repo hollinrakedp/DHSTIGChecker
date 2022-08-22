@@ -52,4 +52,10 @@ Access - (blank)
 Inherited from - (CN of domain)
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsDomainController) {
+    "Not Reviewed"
+}
+else {
+    "Not Applicable"
+}

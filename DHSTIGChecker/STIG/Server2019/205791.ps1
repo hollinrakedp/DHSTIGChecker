@@ -30,4 +30,10 @@ If the system does not audit the following, this is a finding.
 DS Access >> Directory Service Access - Success
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsDomainController) {
+    "Not Reviewed"
+}
+else {
+    "Not Applicable"
+}

@@ -24,4 +24,10 @@ If prohibited accounts are members of the local administrators group, this is a 
 If the built-in Administrator account or other required administrative accounts are found on the system, this is not a finding.
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsDomainController) {
+    "Not Reviewed"
+}
+else {
+    "Not Applicable"
+}

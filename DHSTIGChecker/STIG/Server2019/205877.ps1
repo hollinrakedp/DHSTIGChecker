@@ -20,4 +20,10 @@ Enter "Get-ADUser krbtgt -Property PasswordLastSet".
 If the "PasswordLastSet" date is more than 180 days old, this is a finding.
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsDomainController) {
+    "Not Reviewed"
+}
+else {
+    "Not Applicable"
+}

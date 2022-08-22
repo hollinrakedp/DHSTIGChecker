@@ -28,4 +28,10 @@ Navigate to Computer Configuration >> Policies >> Windows Settings >> Security S
 If the "Maximum lifetime for user ticket renewal" is greater than "7" days, this is a finding.
 
 #>
-return 'Not Reviewed'
+
+if ($Script:IsDomainController) {
+    "Not Reviewed"
+}
+else {
+    "Not Applicable"
+}
