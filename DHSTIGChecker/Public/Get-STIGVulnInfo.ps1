@@ -48,7 +48,7 @@ function Get-STIGVulnInfo {
                 }
             }
 
-            All {
+            ShowAll {
                 $Results = $STIGInfo
             }
         }
