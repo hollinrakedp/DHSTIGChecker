@@ -12,8 +12,8 @@ Foreach($script in @($Public + $Private)) {
 
 $STIGRootPath = "$PSScriptRoot\STIG"
 
-$TabCompleteAvailableSTIGs = {(Get-ChildItem -Path $STIGRootPath -Directory).Name}
-Register-ArgumentCompleter -CommandName Invoke-STIGChecker -ParameterName Name -ScriptBlock $TabCompleteAvailableSTIGs
-Register-ArgumentCompleter -CommandName Get-STIGVulnInfo -ParameterName Name -ScriptBlock $TabCompleteAvailableSTIGs
+$Script:TabCompleteAvailableSTIGs = {(Get-ChildItem -Path $Script:STIGRootPath -Directory).Name}
+Register-ArgumentCompleter -CommandName Invoke-STIGChecker -ParameterName Name -ScriptBlock $Script:TabCompleteAvailableSTIGs
+Register-ArgumentCompleter -CommandName Get-STIGVulnInfo -ParameterName Name -ScriptBlock $Script:TabCompleteAvailableSTIGs
 
 Export-ModuleMember -Function $Public.Basename

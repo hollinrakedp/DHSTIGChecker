@@ -4,12 +4,12 @@ function Get-STIGVulnInfo {
         [Parameter(
             Mandatory,
             ValueFromPipelineByPropertyName)]
-        [ValidateScript({
-                if ($_ -in (& $TabCompleteAvailableSTIGs)) {
+            [ValidateScript({
+                if ($_ -in (& $Script:TabCompleteAvailableSTIGs)) {
                     $true
                 }
                 else {
-                    throw "The supplied value `'$_`' is invalid. Valid values: $($STIGPath.Name -join ', ')"
+                    throw "The supplied value `'$_`' is invalid. Valid values: $((& $Script:TabCompleteAvailableSTIGs) -join ', ')"
                 }
             })]
         [string]$Name,
