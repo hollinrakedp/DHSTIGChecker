@@ -93,7 +93,7 @@ function Invoke-STIGChecker {
             [int]$PercentComplete = [math]::Round(($STIGCounter / $STIGS.Count) * 100)
             Write-Progress -Activity "Running STIG Checks ($PercentComplete%)" -Status "Check: VulnID $($STIG.BaseName)" -PercentComplete $PercentComplete
             Write-Verbose "Check: $STIGCounter"
-            Write-Verbose "Vulnerability ID: $($STIG.BaseName)"
+            Write-Verbose "Vulnerability ID: V-$($STIG.BaseName)"
             Write-Verbose "$($STIG.FullName)"
             [string]$result = . $STIG.FullName
             switch ($result) {
@@ -109,7 +109,7 @@ function Invoke-STIGChecker {
                 'Not Reviewed' { $STIGCounterNR++ }
             }
             $VulnResults += [PSCustomObject]@{
-                VulnID = $($STIG.BaseName)
+                VulnID = "V-$($STIG.BaseName)"
                 Result = $result
             }
         }
