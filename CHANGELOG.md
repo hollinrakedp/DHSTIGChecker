@@ -1,5 +1,25 @@
 Change Log
 ======
+# v0.4 (2022-08-22)
+
+Fixes
+* Invoke-STIGChecker now exits if it fails to find the environment configuration or retrieve the computer information
+* Get-STIGVulnInfo - Corrected parameter set name (Was 'All', Should be 'ShowAll')
+* Resolved an issue where registry checks with multiple keys to check was failing
+* Resolved an issue where the tab completion was not displaying the valid values
+
+Changes
+* Invoke-STIGChecker - Added progress bar for STIG Checks
+* Server 2016
+    * Completed the following checks: V-225069, V-236000
+* Server 2019
+    * Completed the following checks: V-205924, V-236001
+    * Partially completed checks: V-205628, V-205645, V-205646, V-205647, V-205665, V-205666, V-205667, V-205668, V-205669, V-205670, V-205671, V-205672, V-205673, V-205674, V-205675, V-205695, V-205701, V-205702, V-205703, V-205704, V-205705, V-205706, V-205723, V-205726, V-205732, V-205733, V-205738, V-205739, V-205740, V-205741, V-205742, V-205743, V-205744, V-205745, V-205746, V-205747, V-205748, V-205786, V-205787, V-205788, V-205789, V-205790, V-205791, V-205792, V-205793, V-205794, V-205818, V-205875, V-205877
+* Windows 10
+    * Completed the following checks: V-220861, V-220872, V-220954, V-220955
+
+Errata
+* Explicitly declared variable scope
 # v0.3 (2022-05-15)
 Significant progress was made towards completing the checks for both the Server 2016 and 2019 STIGs. These newly added checks may be incorrect or incomplete due to slight variations between the different OSes.
 
