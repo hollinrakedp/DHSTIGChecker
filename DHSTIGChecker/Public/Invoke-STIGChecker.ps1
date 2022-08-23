@@ -90,7 +90,8 @@ function Invoke-STIGChecker {
         Write-Verbose "Found $($STIGS.Count) Checks."
         foreach ($STIG in $STIGs) {
             $STIGCounter++
-            #Write-Progress -Activity "Running STIG Checks" -Status "Check: VulnID $($STIG.BaseName)" -PercentComplete ($STIGCounter / $STIGS.Count * 100)
+            [int]$PercentComplete = [math]::Round(($STIGCounter / $STIGS.Count) * 100)
+            Write-Progress -Activity "Running STIG Checks ($PercentComplete%)" -Status "Check: VulnID $($STIG.BaseName)" -PercentComplete $PercentComplete
             Write-Verbose "Check: $STIGCounter"
             Write-Verbose "Vulnerability ID: $($STIG.BaseName)"
             Write-Verbose "$($STIG.FullName)"
