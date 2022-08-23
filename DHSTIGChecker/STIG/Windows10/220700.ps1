@@ -33,4 +33,4 @@ switch ($SecureBoot) {
         $SecureBoot = $false 
     }
 }
-return $SecureBoot
+$SecureBoot

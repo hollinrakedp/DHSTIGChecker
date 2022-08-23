@@ -10,7 +10,7 @@ Foreach($script in @($Public + $Private)) {
     }
 }
 
-$STIGRootPath = "$PSScriptRoot\STIG"
+$Script:STIGRootPath = "$PSScriptRoot\STIG"
 
 $Script:TabCompleteAvailableSTIGs = {(Get-ChildItem -Path $Script:STIGRootPath -Directory).Name}
 Register-ArgumentCompleter -CommandName Invoke-STIGChecker -ParameterName Name -ScriptBlock $Script:TabCompleteAvailableSTIGs
