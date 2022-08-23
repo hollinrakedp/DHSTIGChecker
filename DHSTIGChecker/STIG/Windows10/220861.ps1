@@ -34,15 +34,14 @@ Value: 1
 #>
 
 $Local:Results = @()
-$Local:Names = "NoPreviewPane", "NoReadingPane"
+$Local:Names = 'NoPreviewPane', 'NoReadingPane'
 
-foreach ($Name in $Local:Names) {
+foreach ($_ in $Local:Names) {
     $Params = @{
         Path          = "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer\"
-        Name          = "$Name"
+        Name          = "$_"
         ExpectedValue = 1
     }
-        
     $Local:Results += Compare-RegKeyValue @Params
 }
 

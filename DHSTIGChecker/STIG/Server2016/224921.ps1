@@ -36,10 +36,10 @@ if (!($Script:IsDomainJoined)) {
 $Local:Results = @()
 $Local:Names = '\\*\NETLOGON', '\\*\SYSVOL'
 
-foreach ($Name in $Local:Names) {
+foreach ($_ in $Local:Names) {
     $Params = @{
         Path          = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\NetworkProvider\HardenedPaths\"
-        Name          = "$Name"
+        Name          = "$_"
         ExpectedValue = "RequireMutualAuthentication=1, RequireIntegrity=1"
     }
         
