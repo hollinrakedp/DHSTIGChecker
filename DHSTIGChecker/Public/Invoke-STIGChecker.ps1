@@ -122,13 +122,14 @@ function Invoke-STIGChecker {
         
         #$VulnResults #| Group-Object -Property Result
         
-        $ResultsCount = @{
-            'Total Checks'   = $STIGCounter
+        $ResultsCount = [ordered]@{
             'Not Applicable' = $STIGCounterNA
-            Open             = $STIGCounterO
             'Not a Finding'  = $STIGCounterNF
             'Not Reviewed'   = $STIGCounterNR
+            Open             = $STIGCounterO
+            'Total Checks'   = $STIGCounter
         }
+        $Score = [math]::Round((($STIGCounterNF / ($STIGCounterNF + $STIGCounterO + $STIGCounterNR))*100),2)
 
         $ResultsStatus = @{
             'Not Applicable' = ($VulnResults | Where-Object { $_.Result -eq 'Not Applicable' }).VulnID
@@ -136,14 +137,18 @@ function Invoke-STIGChecker {
             'Not a Finding'  = ($VulnResults | Where-Object { $_.Result -eq 'Not a Finding' }).VulnID
             'Not Reviewed'   = ($VulnResults | Where-Object { $_.Result -eq 'Not Reviewed' }).VulnID
         }
+        $STIGInfo = Get-Content "$STIGRootPath\$Name\version.json" | ConvertFrom-Json
 
         $STIGCheckerResults = @{
             ComputerName        = $env:COMPUTERNAME
             STIG                = $Name
+            "STIG Release"      = "v$($STIGInfo.Version)r$($STIGInfo.Release)"
+            "STIG Date"         = $STIGInfo.Date        
             Classified          = $Script:IsClassified
             'Domain Joined'     = $Script:IsDomainJoined
             'VDI System'        = $Script:IsVDI
             'Persistent VDI'    = $Script:VDINonPersist
+            Score              = "$Score %"
             'Results Count'     = $ResultsCount
             'Results By Status' = $ResultsStatus
             Data                = $VulnResults
