@@ -1,7 +1,26 @@
 Change Log
 ======
+# v0.6 (2023-05-XX)
+Update to new STIG revisions for Windows 10, Windows 11, Server 2016, and Server 2019
+
+## Fixes
+
+## Changes
+* Updated STIG Release
+    * Windows 10 v2r6
+        * New Checks: V-256894
+    * Windows 11 v1r3
+        * New Checks: V-256893
+    * Server 2016 v2r6
+        * Removed Checks: V-224889, V-224990
+    * Server 2019 v2r6
+        * Removed Checks: V-205729, V-205794
+* Added classification header to all check files
+## Errata
+* Whitespace cleanup
 # v0.5.1 (2023-05-15)
 Minor update to add a few additional checks.
+
 ## Fixes
 
 ## Changes
