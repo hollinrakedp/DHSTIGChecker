@@ -1,5 +1,20 @@
 Change Log
 ======
+# v0.5.1 (2023-05-15)
+Minor update to add a few additional checks.
+## Fixes
+
+## Changes
+* Server 2016
+    * Completed the following checks: V-224940, V-225029
+* Windows 10
+    * Completed the following checks: V-220933
+* Windows 11
+    * Completed the following checks: V-253254, V-253285, V-253364, V-253457
+    * Partially completed the following checks: V-253264
+
+## Errata
+
 # v0.5 (2023-05-01)
 Major update to newer STIG revisions.
 ## Fixes
