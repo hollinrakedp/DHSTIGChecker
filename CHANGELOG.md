@@ -1,6 +1,16 @@
 Change Log
 ======
-# v0.6 (2023-05-XX)
+# v0.6.1 (2023-05-15)
+Fixed file encoding of the STIG files.
+
+## Fixes
+* Fixed file encoding to UTF-8 for all STIG files
+
+## Changes
+
+## Errata
+
+# v0.6 (2023-05-15)
 Update to new STIG revisions for Windows 10, Windows 11, Server 2016, and Server 2019
 
 ## Fixes
